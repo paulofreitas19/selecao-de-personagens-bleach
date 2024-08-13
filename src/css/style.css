@@ -38,6 +38,7 @@ body{
     align-items: center;
     max-width: 700px;
     gap: 25px;
+    margin-top: 140px;
 }
 
 .selecao-de-personagens .personagens .titulo{
@@ -69,6 +70,7 @@ body{
     /* background-color: green; */
     text-align: center;
     padding: 12px;
+    margin-top: 120px;
 }
 
 .img-personagem{
