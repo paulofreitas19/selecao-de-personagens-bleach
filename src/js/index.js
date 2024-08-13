@@ -19,31 +19,53 @@
 
         passo 5 - alterar o fundo do personagem
 
-
 */
 
 const personagens = document.querySelectorAll(".icone-personagem");
 
 personagens.forEach((personagem) => {
   personagem.addEventListener("mouseenter", () => {
-    const personagemSelecionado = document.querySelector(".selecionado");
+    if (window.innerWidth < 450) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-    personagemSelecionado.classList.remove("selecionado");
+    removerSelecaoDoPersonagem();
 
     personagem.classList.add("selecionado");
 
-    const imagemPersonagem = document.querySelector(".img-personagem");
+    const idPersonagem = alterarImagemPersonagemSelecionado(personagem);
 
-    const idPersonagem = personagem.attributes.id.value;
-    imagemPersonagem.src = `./src/img/characters/img-${idPersonagem}.png`;
+    alterarFundoPersonagemSelecionado(idPersonagem);
 
-    const fundoPersonagem = document.querySelector(".fundo-personagem");
-    fundoPersonagem.src = `./src/img/characters/fundo-${idPersonagem}.png`;
+    alterarNomePersonagemSelecionado(personagem);
 
-    const nomePersonagem = document.getElementById("nome");
-    nomePersonagem.innerText = personagem.getAttribute("data-name");
-
-    const descricaoPersonagem = document.getElementById("descricao");
-    descricaoPersonagem.innerText = personagem.getAttribute("data-description");
+    alterarDescricaoPersonagemSelecionado(personagem);
   });
 });
+
+function alterarDescricaoPersonagemSelecionado(personagem) {
+  const descricaoPersonagem = document.getElementById("descricao");
+  descricaoPersonagem.innerText = personagem.getAttribute("data-description");
+}
+
+function alterarNomePersonagemSelecionado(personagem) {
+  const nomePersonagem = document.getElementById("nome");
+  nomePersonagem.innerText = personagem.getAttribute("data-name");
+}
+
+function alterarFundoPersonagemSelecionado(idPersonagem) {
+  const fundoPersonagem = document.querySelector(".fundo-personagem");
+  fundoPersonagem.src = `./src/img/characters/fundo-${idPersonagem}.png`;
+}
+
+function alterarImagemPersonagemSelecionado(personagem) {
+  const imagemPersonagem = document.querySelector(".img-personagem");
+  const idPersonagem = personagem.attributes.id.value;
+  imagemPersonagem.src = `./src/img/characters/img-${idPersonagem}.png`;
+  return idPersonagem;
+}
+
+function removerSelecaoDoPersonagem() {
+  const personagemSelecionado = document.querySelector(".selecionado");
+  personagemSelecionado.classList.remove("selecionado");
+}

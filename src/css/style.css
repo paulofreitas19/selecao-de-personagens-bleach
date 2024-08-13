@@ -77,6 +77,7 @@ body{
 
 .fundo-personagem{
    position: absolute;
+   margin-left: -30px;
 
 }
 
